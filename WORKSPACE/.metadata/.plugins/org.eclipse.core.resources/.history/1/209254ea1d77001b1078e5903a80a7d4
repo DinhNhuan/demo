@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block breadcrumb %}
+	{% set br_items = [('/timeoff', 'Time Off', True)] %}
+	{% with br_items=br_items %}
+		{% include "breadcrumb.html" %}
+	{% endwith %}
+{% endblock breadcrumb %}
+{% block main %}
+<div class="file-loading">
+    <input id="input-b7" name="input-b7[]" multiple type="file" class="file" data-allowed-file-extensions='["csv", "txt"]'>
+</div>
+{% endblock main%}

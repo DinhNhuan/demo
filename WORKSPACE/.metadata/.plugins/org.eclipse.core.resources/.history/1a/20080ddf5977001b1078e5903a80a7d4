@@ -1,0 +1,30 @@
+// submit import timeoff form
+$(document).ready(function () {
+	$('#import_timeoff').submit(function(event) {
+		event.preventDefault();
+		var up_file = upload_file('#import_timeoff');
+		if (up_file != null && up_file[0] == 1) {
+			var file_name	= $('#timeoff_file').get(0).files[0].name;
+			alert(file_name);
+			var data = {};
+			$.ajax({
+			   url: '/import_timeoff',
+			   type: "GET",
+			   async: false,
+			   data: encodeURIComponent(JSON.stringify(data)),
+			   success: function(resp){
+				   var result = resp.result;
+					if (result[0]) {
+						custom_alert(result[1], 'success');
+					} else {
+						custom_alert(result[1], 'error');
+					}
+			   }
+			   
+		   });
+		} else {
+			custom_alert(up_file[1], 'error');
+		}
+	})
+})
+

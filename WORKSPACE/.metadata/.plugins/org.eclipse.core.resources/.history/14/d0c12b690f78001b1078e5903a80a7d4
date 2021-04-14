@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block breadcrumb %}
+	{% set br_items = [('/holiday', 'Holiday', True)] %}
+	{% with br_items=br_items %}
+		{% include "breadcrumb.html" %}
+	{% endwith %}
+{% endblock breadcrumb %}
+{% block sidebar %}
+	{% set active_sidebar = 'holiday' %}
+	{% with active_sidebar=active_sidebar %}
+		{% include "sidebar.html" %}
+	{% endwith %}
+{% endblock sidebar %}
+{% block main %}
+<form id='import_timeoff' method="post" enctype="multipart/form-data">
+	<div class='dp-flex'>
+		<div class="custom-file col-4">
+		    <input type="file" name='timeoff_file' id='timeoff_file' accept='.xlsx' class="custom-file-input " >
+		    <label class="custom-file-label" for="timeoff_file">Choose file</label>
+		</div>
+		<input type='submit' value='Import' class='mg-l-5' id='btn_import' disabled>
+	</div>
+</form>
+{% endblock main %}

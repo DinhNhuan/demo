@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block breadcrumb %}
+	{% set br_items = [('/timeoff', 'Time Off', True)] %}
+	{% with br_items=br_items %}
+		{% include "breadcrumb.html" %}
+	{% endwith %}
+{% endblock breadcrumb %}
+
+{% block sidebar %}
+	{% set active_sidebar = 'timeoff' %}
+	{% with active_sidebar=active_sidebar %}
+		{% include "sidebar.html" %}
+	{% endwith %}
+{% endblock sidebar %}
+
+{% block main %}
+<form id='import_timeoff'>
+	
+	<!-- Custom Bootstrap File Input -->
+	<div class="custom-file w-100">
+	    <input type="file" name='timeoff_file' id='timeoff_file' class="custom-file-input " >
+	    <label class="custom-file-label" for="customFile">Choose file</label>
+	</div>
+</form>
+{% endblock main %}

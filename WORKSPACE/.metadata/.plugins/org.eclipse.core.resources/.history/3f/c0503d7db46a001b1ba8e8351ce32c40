@@ -1,0 +1,133 @@
+'''
+Created on Feb 5, 2021
+
+@author: toannguyen
+'''
+import sys, re, os
+from decimal import Decimal
+from pprint import pprint
+import smartsheet
+from simple_smartsheet import Smartsheet
+import datetime
+import time, stat
+from pprint import pprint
+import xlwt
+from jinja2 import Environment
+from jinja2.loaders import FileSystemLoader
+from config import TOKEN
+
+from src.commons.Utils import CommonUtils
+
+from src.commons import Enums
+
+
+class SmartSheets:
+    def __init__(self, list_sheet=None):
+        self.connection = None
+        self.available_name = []
+        
+        self.list_sheet = list_sheet
+        
+        self.info   = {}
+        
+
+        
+    def set_attr(self, **kwargs):                      
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+            
+    def connect_smartsheet(self):
+        self.connection = Smartsheet(TOKEN)
+        self.get_available_sheet_name()
+        
+    def get_available_sheet_name(self):
+        sheets = self.connection.sheets.list()
+        for sheet in sheets:
+            self.available_name.append(sheet.name)
+    
+    def parse(self):
+        if self.list_sheet == None:
+            pass
+            # missing code
+        else:
+            list_sheet_name = []
+            for sheet_name in self.list_sheet:
+                if sheet_name in self.available_name:
+                    list_sheet_name.append(sheet_name)
+                else:
+                    CommonUtils.stuck('No sheet name %s'%sheet_name)
+            for sheet_name in list_sheet_name:
+                info = Sheet(self, sheet_name)
+                info.parse_sheet()
+                self.info[sheet_name] = info 
+        
+    
+class Sheet():
+    def __init__(self, smartsheet_obj, sheet_name):
+        self.children_task  = []
+        self.parent_task    = []
+        self.name           = sheet_name
+        self.header_index    = {}
+        self.info           = []
+        self.smartsheet_obj = smartsheet_obj
+
+    def parse_sheet(self):
+        sheet           = self.smartsheet_obj.connection.sheets.get(self.name)
+        cols            = sheet.columns
+        count = 0
+        for col  in cols:
+            header_name = col.title
+            if header_name in Enums.SmartsheetCfgKeys.LIST_HEADER:
+                self.header_index[header_name] = count
+            count += 1
+        rows = sheet.rows
+        
+        for row in rows:
+            task_obj = Task(self, self.header_index, row, self.name)
+            task_obj.parse_task()
+            self.info.append(task_obj)
+            if  task_obj.parent_id == task_obj.self_id:
+                self.children_task.append(task_obj)
+    
+class Task():
+    def __init__(self, sheet_obj, header_index, row, sheet_name):
+        self.header_index       = header_index
+        self.row                = row
+        self.self_id            = row.id
+        self.sibling_id         = row.sibling_id
+        self.parent_id          = row.parent_id
+        self.task_name          = None
+        self.assign_to          = None
+        self.start_date         = None
+        self.end_date           = None
+        self.duration           = None
+        self.predecessors       = None
+        self.comments           = None
+        self.actual_end_date    = None
+        self.status             = None
+        self.sheet_obj          = sheet_obj
+        
+    def parse_task(self):
+        cells = self.row.cells
+        for header in self.header_index:
+            index = self.header_index[header]
+            value = cells[index].display_value
+            if header in [Enums.SmartsheetCfgKeys.ACTUAL_END_DATE]:
+                self.actual_end_date = value
+            elif header in [Enums.SmartsheetCfgKeys.TASK_NAME]:
+                self.task_name = value
+            elif header in [Enums.SmartsheetCfgKeys.ASSIGN_TO]:
+                self.assign_to = value
+            elif header in [Enums.SmartsheetCfgKeys.START_DATE]:
+                self.start_date = value
+            elif header in [Enums.SmartsheetCfgKeys.END_DATE]:
+                self.end_date = value
+            elif header in [Enums.SmartsheetCfgKeys.DURATION]:
+                self.duration = value
+            elif header in [Enums.SmartsheetCfgKeys.PREDECESSOR]:
+                self.predecessors = value
+            elif header in [Enums.SmartsheetCfgKeys.COMMENT]:
+                self.comments = value
+            elif header in [Enums.SmartsheetCfgKeys.STATUS]:
+                self.status = value
+            

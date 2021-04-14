@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {%- block head %}
+        <title>
+            {% block title %}
+                {{title|default}}
+            {% endblock title %}
+        </title>
+        {%- block metas %}
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {%- endblock metas %}
+
+        {%- block styles %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='font/css/all.css') }}" />
+			<link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}" />
+        {%- endblock styles %}
+        
+    {%- endblock head %}
+  </head>
+  <body {% block body_attribs %}{% endblock body_attribs %}>
+
+    {% block body -%}
+         <div id="overlay"></div>
+        {% block navbar %}
+            {% include "header.html" %}
+        {%- endblock navbar %}
+        
+        <div id="mySidebar" class="sidebar">
+		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a>
+		  <a href="#">About</a>
+		  <a href="#">Services</a>
+		  <a href="#">Clients</a>
+		  <a href="#">Contact</a>
+		</div>
+		
+		<div id="main" class='container'>
+		  <button class="openbtn" onclick="openNav()">Open Sidebar</button>  
+		  <h2>Collapsed Sidebar</h2>
+		  <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p>
+		</div>
+           
+        {% block footer %} 
+        {% include "footer.html" %}
+        {% endblock %}
+        
+        
+       {% block scripts %}
+       <script src="{{url_for('static', filename='js/common.js')}}"></script>
+        {%- endblock scripts %}
+        
+    {%- endblock body %}
+  </body>
+</html>

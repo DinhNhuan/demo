@@ -1,0 +1,3 @@
+<div>
+	<div id='get_newest_data_console'><div class='cnt1'><div align='center' class='b-bottom '><b>Console</b><a class='close-p' onclick='" + '$("#overlay").hide();' + "'><i class='fas fa-times '></i></a></div><div class='cnt2'></div></div></div>
+</div>

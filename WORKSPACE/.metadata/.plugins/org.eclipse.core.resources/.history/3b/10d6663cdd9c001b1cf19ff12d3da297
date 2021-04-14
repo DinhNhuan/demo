@@ -1,0 +1,91 @@
+<head>
+	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+	<link rel="stylesheet" href="{{ url_for('static', filename='vendors/bootstrap-4.5.3/css/bootstrap.min.css') }}" />  
+	<link rel="stylesheet" href="{{ url_for('static', filename='vendors/DataTables/datatables.min.css') }}" /> 
+	<link rel="stylesheet" href="{{ url_for('static', filename='vendors/multiple-select/example-styles.css') }}" /> 
+	<!-- Our Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendors/fontawesome/css/all.css') }}" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/timesheet/report.css') }}" />
+</head>
+
+<script src="{{url_for('static', filename='js/enum.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/fontawesome/js/solid.js')}}" ></script>
+<script src="{{url_for('static', filename='vendors/fontawesome/js/fontawesome.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/jquery/jquery-3.1.1.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/jquery/jquery-3.1.1.slim.min.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/poper/popper-1.14.0.min.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/bootstrap-4.5.3/js/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/DataTables/datatables.min.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/multiple-select/jquery.multi-select.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/canvas/canvasjs.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/common.js')}}"></script>
+
+
+
+
+
+<div id="chart_id" style="height: 300px; width: 100%;">
+</div>
+
+<script >
+  function draw_stack_column_chart(id, data) {
+	var title_text = data.title;
+	var info = data.info;
+	var column = data.column;
+	var row_type = data.type;
+	var chart_data = []
+	var chart_type = 'stackedColumn';
+	for (var i = 0; i < row_type.length; i++) {
+		var temp = {
+				type: chart_type,
+				legendText: row_type[i],
+				showInLegend: "true",
+				color: "red", 
+				dataPoints: []
+			};
+			
+		for (var j = 0; j < column.length; j++) {
+			temp['dataPoints'].push({ y: info[row_type[i]][column[j]] , label: column[j]});
+		}
+		chart_data.push(temp);
+	}
+    var chart = new CanvasJS.Chart(id,
+	{
+		title:{
+			text: title_text
+		},
+		axisY:{
+		   maximum: 100,
+		 },
+		data: chart_data
+	});
+	chart.render();
+}
+var data = {};
+data['title'] = 'title';
+data['column'] = ['aaaaaa', 'bbbbbb', 'cccccc'];
+data['type'] = ['None', 'NRE', 'RnD'];
+data['info'] = {
+	'None': {
+		'aaaaaa': 30,
+		'bbbbbb': 40,
+		'cccccc': 30,
+
+	},
+	'NRE': {
+		'aaaaaa': 40,
+		'bbbbbb': 30,
+		'cccccc': 30,
+
+	},
+	'RnD': {
+		'aaaaaa': 30,
+		'bbbbbb': 30,
+		'cccccc': 40,
+
+	}
+	
+}
+draw_stack_column_chart(chart_id, data);
+  </script>

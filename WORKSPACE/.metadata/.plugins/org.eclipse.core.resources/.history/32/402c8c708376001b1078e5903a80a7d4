@@ -1,0 +1,92 @@
+body {
+	background: red;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+	padding: 0px;
+	margin: 0px;
+}
+.header {
+	background: #aaa;
+    height: 50px;
+}
+.footer {
+	background: #aaa;
+    height: 50px;
+}
+.container {
+	background: #ddd;
+    height: 100%;
+	display: flex;
+}
+.main {
+	background: blue;
+    width: 100%;
+}
+.sidebar {
+  	height: 100%;
+  	width: 30px;
+  	background-color: #111;
+  	transition: 0.5s;
+	display: -moz-inline-grid;
+	overflow: hidden;
+}
+
+.sidebar a {
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+.tab {
+}
+
+/* Style the buttons inside the tab */
+.tab a {
+	display: block;
+	background-color: #ddd;
+	color: black;
+	padding: 15px 20px;
+	width: 100%;
+	border: none;
+	outline: none;
+	text-align: left;
+	cursor: pointer;
+	transition: 0.3s;
+	font-weight: bold;
+	background-image: linear-gradient(to right, #ddd, #e9e9e9);
+}
+
+.tab li {
+	border: 1px solid #FFF;
+	
+}
+
+/* Change background color of buttons on hover */
+.tab a:hover {
+	background-color: #ccc;
+  	color: #FFF;
+}
+
+/* Create an active/current "tab button" class */
+.tab a.active {
+	background-color: #4F96D3;
+	color: #FFF;
+	background-image: linear-gradient(to right, #4F96D3, #7FC6FF);
+}

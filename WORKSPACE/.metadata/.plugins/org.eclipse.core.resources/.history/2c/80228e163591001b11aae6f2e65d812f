@@ -1,0 +1,35 @@
+function confirm_loggin() {
+	var user_name = document.getElementById('user_name').value;
+	var password = document.getElementById('password').value;
+	var data = {}
+	data[SESSION_PASSWORD] = password;
+	data[SESSION_USERNAME] =  user_name;
+	var out = null;
+	$('#overlay_loader').show();
+	document.getElementById('error_div').style.display = 'none';
+	$.ajax({
+	     url: AUTH,
+	     type: "POST",
+	     data: encodeURIComponent(JSON.stringify(data)),
+		 async: false,
+	     success: function(resp){
+     				$('#overlay_loader').hide();
+	                 var result = resp.result;
+	                 if (result[0]) {
+	                	 out = true;
+	                 } else {
+	                	 out = false;
+	                	 document.getElementById('error_content').innerHTML = result[1];
+	                	 document.getElementById('error_div').style.display = 'block';
+	                 } 
+	         }
+	 });
+	return out;
+}
+
+$(document).ready(function() {
+	$('#login_form').submit(function() {
+		var result = confirm_loggin();
+	    return result; 
+	})
+})

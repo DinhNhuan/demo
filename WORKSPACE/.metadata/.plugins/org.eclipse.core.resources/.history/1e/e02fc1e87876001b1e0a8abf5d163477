@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<link rel="stylesheet" href="{{ url_for('static', filename='font/css/all.css') }}" />
+	</head>
+	<body>
+		<div>
+		<i class="fas fa-clock" style="color: red;"></i>
+
+		</div>
+	
+	
+	
+	
+	
+	
+	</body>
+	
+</html>

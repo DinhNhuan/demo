@@ -1,0 +1,27 @@
+// submit import timeoff form
+$(document).ready(function () {
+	$('#import_timeoff').submit(function(event) {
+		event.preventDefault();
+		var up_file = upload_file('#import_timeoff');
+		console.log(up_file);
+	})
+})
+
+function upload_file (form_id) {
+	var form_data = new FormData($(form_id)[0]);
+	var result = null;
+    $.ajax({
+        type: 'POST',
+        url: '/upload_file',
+		async: false,
+        data: form_data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function(resp) {
+		result = resp.result;
+        },
+    });
+	
+	return result;
+}

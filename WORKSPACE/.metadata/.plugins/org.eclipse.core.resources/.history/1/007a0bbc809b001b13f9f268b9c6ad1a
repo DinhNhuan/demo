@@ -1,0 +1,55 @@
+<head>
+	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+	<link rel="stylesheet" href="{{ url_for('static', filename='vendors/bootstrap-4.5.3/css/bootstrap.min.css') }}" />  
+	<link rel="stylesheet" href="{{ url_for('static', filename='vendors/DataTables/datatables.min.css') }}" /> 
+	<link rel="stylesheet" href="{{ url_for('static', filename='vendors/multiple-select/example-styles.css') }}" /> 
+	<!-- Our Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendors/fontawesome/css/all.css') }}" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/timesheet/report.css') }}" />
+</head>
+
+<div class='review-e-popup'>
+	<div class='review-e-title'>
+		<span>Send Report</span>
+	</div>
+	<div  class='review-e-menu'>
+		<ul>
+			<li>
+				<input type='checkbox' data-target='#cnt_1'>
+				<span data-target='cnt-1'>toannguyen@savarti.com</span>
+			</li>
+			<li>
+				<input type='checkbox' data-target='#cnt_2'>
+				<span data-target='cnt-2'>gianghnguyen@savarti.com</span>
+			</li>
+			<li>
+				<input type='checkbox' data-target='#cnt_3'>
+				<span data-target='cnt-3'>nghienghnghieng@savarti.com</span>
+			</li>
+		</ul>
+	</div>
+	<div class='review-e-content'>
+		<div id='cnt_1' class='mail-ctn dp-block' >aaa
+		</div>
+		<div id='cnt_2' class='mail-ctn dp-none'>bbb
+		</div>
+		<div id='cnt_3' class='mail-ctn dp-none'>ccc
+		</div>
+	</div>
+	<div class='review-e-footer'>
+		<button type='button' >Cancel</button>
+		<button type='button' >Send</button>
+	</div>
+</div>
+<script src="{{url_for('static', filename='js/enum.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/fontawesome/js/solid.js')}}" ></script>
+<script src="{{url_for('static', filename='vendors/fontawesome/js/fontawesome.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/jquery/jquery-3.1.1.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/jquery/jquery-3.1.1.slim.min.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/poper/popper-1.14.0.min.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/bootstrap-4.5.3/js/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/DataTables/datatables.min.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/multiple-select/jquery.multi-select.js')}}"></script>
+
+<script src="{{url_for('static', filename='js/common.js')}}"></script>

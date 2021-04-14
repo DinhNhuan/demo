@@ -1,0 +1,69 @@
+<head>
+	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+	<link rel="stylesheet" href="{{ url_for('static', filename='vendors/bootstrap-4.5.3/css/bootstrap.min.css') }}" />  
+	<link rel="stylesheet" href="{{ url_for('static', filename='vendors/DataTables/datatables.min.css') }}" /> 
+	<link rel="stylesheet" href="{{ url_for('static', filename='vendors/multiple-select/example-styles.css') }}" /> 
+	<!-- Our Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendors/fontawesome/css/all.css') }}" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/timesheet/report.css') }}" />
+</head>
+
+
+
+<div id="chart_id" style="height: 300px; width: 100%;">
+</div>
+
+<script >
+  function draw_stack_column_chart(id, data) {
+    var chart = new CanvasJS.Chart(id,
+    {
+      title:{
+      text: "Coal Reserves of Countries"
+      },
+        data: [
+      {
+        type: "stackedColumn",
+        dataPoints: [
+        {  y: 111338 , label: "USA"},
+        {  y: 49088, label: "Russia" },
+        {  y: 62200, label: "China" },
+        {  y: 90085, label: "India" },
+        {  y: 38600, label: "Australia"},
+        {  y: 48750, label: "SA"}
+
+        ]
+      },  {
+        type: "stackedColumn",
+         dataPoints: [
+        {  y: 135305 , label: "USA"},
+        {  y: 107922, label: "Russia" },
+        {  y: 52300, label: "China" },
+        {  y: 3360, label: "India" },
+        {  y: 39900, label: "Australia"},
+        {  y: 0, label: "SA"}
+
+        ]
+      }
+      ]
+    });
+
+    chart.render();
+  }
+draw_stack_column_chart(chart_id, null)
+  </script>
+  
+
+<script src="{{url_for('static', filename='js/enum.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/fontawesome/js/solid.js')}}" ></script>
+<script src="{{url_for('static', filename='vendors/fontawesome/js/fontawesome.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/jquery/jquery-3.1.1.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/jquery/jquery-3.1.1.slim.min.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/poper/popper-1.14.0.min.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/bootstrap-4.5.3/js/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/DataTables/datatables.min.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/multiple-select/jquery.multi-select.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/canvas/canvasjs.min.js')}}"></script>
+
+<script src="{{url_for('static', filename='js/common.js')}}"></script>
+

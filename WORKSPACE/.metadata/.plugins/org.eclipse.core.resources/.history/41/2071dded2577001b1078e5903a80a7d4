@@ -1,0 +1,6 @@
+{% extends "layout.html" %}
+{% block main %}
+<div class="file-loading">
+    <input id="input-b7" name="input-b7[]" multiple type="file" class="file" data-allowed-file-extensions='["csv", "txt"]'>
+</div>
+{% endblock main%}

@@ -1,0 +1,56 @@
+
+
+
+
+function load_timesheet_report() {
+	var data = colect_config_date();
+	if (data) {
+		var method_get_url = encodeURIComponent(JSON.stringify(data));
+		location.href = REPORT + '?' + method_get_url;
+	}
+}
+
+$(document).ready(function () {
+	$('#load').click(function(event) {
+		load_timesheet_report();
+	});
+	$('.remove-row').click(function(event) {
+		var tr = $(this).closest('tr');
+		tr.remove();
+	});
+	$('#send_mail').click(function(event) {
+		var data = {}; 
+		var rows = $('#report_timesheet').find('tr');
+		var  week = null;
+		rows.each(function() {
+			var email, resource, work_hours, timeoff, total, detail, comment;
+			if ($(this).hasClass('week')) {
+				week = $(this).find('td:first-child').html();
+			} else if ($(this).hasClass('report-content')) {
+				var td = $(this).find('td');
+				td.each(function() {
+					if (td.hasClass('email')) {
+						email = td.html();
+					} else if (td.hasClass('resource')) {
+						resource = td.html();
+					} else if (td.hasClass('work_hours')) {
+						work_hours = td.html();
+					} else if (td.hasClass('timeoff')) {
+						timeoff = td.html();
+					} else if (td.hasClass('total')) {
+						total = td.html();
+					} else if (td.hasClass('detail')) {
+						detail = td.html();
+					} else if (td.hasClass('comment')) {
+						comment = td.html();
+					}
+				})
+				console.log(week, email, resource, work_hours, timeoff, total, detail, comment)
+			}
+			
+		})
+	});
+});
+
+
+
