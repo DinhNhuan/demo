@@ -1,0 +1,40 @@
+    .item {
+        position: relative;
+        overflow: hidden;
+        height: 330px;
+        border-radius: 5px;
+    }
+    
+    .item .item__image {
+        position: absolute; 
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        cursor: pointer;
+    }
+    
+    .item-info {
+        position: relative;
+        z-index: 2;
+        padding: 30px 20px;
+        text-align: center;
+        transform: translateY(70%);
+        height: 100%;
+        min-height: 330px;
+        transition: all .5s;
+        color: #fff;
+    }
+    
+    .item-info h4.item-info__title {
+        padding: 20px 0;
+    }
+    
+    .item:hover .item-info {
+        transform: translateY(0%);
+        color: #fff;
+        background-color: rgba(51, 88, 179, 0.8);
+    }

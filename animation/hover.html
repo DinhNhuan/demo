@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Title</title>
+</head>
+
+<style>
+    a {
+        text-decoration: none !important;
+        font-size: 20px;
+        position: relative;
+    }
+    
+    a:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: -50%;
+        left: 50%;
+        height: 1px;
+        width: 0;
+        background-color: blueviolet;
+        outline: none;
+        transition: width 0.3s;
+    }
+    
+    a:before {
+        content: "";
+        /* position */
+        position: absolute;
+        bottom: 0;
+        right: -50%;
+        left: 50%;
+        /* width-height */
+        height: 1px;
+        width: 0;
+        outline: none;
+        /* color */
+        background-color: blueviolet;
+        transition: 0.3s;
+    }
+    
+    a:hover:after {
+        width: 50%;
+        right: -50%;
+    }
+    
+    a:hover:before {
+        width: 50%;
+        left: 0;
+    }
+</style>
+
+<body>
+
+    <div class="container mt-5">
+        <a href="#">click me to review</a>
+        <a href="#">click me to review</a>
+        <a href="#">click me to review</a>
+        <a href="#">click me to review</a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
