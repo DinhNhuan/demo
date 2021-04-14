@@ -1,4 +1,0 @@
-#report_timesheet a:hover {
-	cursor: pointer;
-	color: red;
-}

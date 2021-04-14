@@ -1,5 +1,0 @@
-{% extends "layout.html" %}
-{% block main %}
-<input id="input-b2" name="input-b2" type="file" class="file" data-show-preview="false">
-
-{% endblock main%}

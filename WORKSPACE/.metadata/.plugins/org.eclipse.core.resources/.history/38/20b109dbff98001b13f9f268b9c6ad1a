@@ -1,9 +1,0 @@
-# from src.commons.utils import send_mail
-# 
-# 
-# recipient = 'toannguyen@savarti.com'
-# cc_recipient = 'toannguyen@savarti.com'
-# subject  = 'test'
-# message  = 'test'
-# a = send_mail(recipient, cc_recipient, subject, message)
-# print (a)
